@@ -47,11 +47,15 @@ def generate_caption(image_url, caption_model, caption_processor, caption_tokeni
     
     # Generate caption with attention mask
     max_length = 30
+    decoder_input_ids = torch.full((1, 1), caption_model.config.decoder_start_token_id, dtype=torch.long)
+    
     output_ids = caption_model.generate(
-        pixel_values, 
+        pixel_values,
+        decoder_input_ids=decoder_input_ids,
         max_length=max_length,
         num_beams=4,
-        attention_mask=torch.ones(pixel_values.shape[0], max_length)
+        attention_mask=torch.ones(pixel_values.shape[0], pixel_values.shape[1], dtype=torch.long),
+        decoder_attention_mask=torch.ones(1, 1, dtype=torch.long)
     )
     
     caption = caption_tokenizer.decode(output_ids[0], skip_special_tokens=True)
@@ -90,8 +94,12 @@ def main():
         return
 
     # image_url = input("Please enter the URL of the image you want to analyze: ")
-    image_url = "https://hips.hearstapps.com/hmg-prod/images/champagne-beach-espiritu-santo-island-vanuatu-royalty-free-image-1655672510.jpg"
-    
+    # image_url = "https://hips.hearstapps.com/hmg-prod/images/champagne-beach-espiritu-santo-island-vanuatu-royalty-free-image-1655672510.jpg"
+    # image_url = "https://storage.googleapis.com/pod_public/1300/122734.jpg"
+    # image_url = "https://assets.vogue.com/photos/6345c8425411f74adede67e0/16:9/w_1920%2Cc_limit/00-trip%2520(1).jpg"
+    # image_url = "https://im.rediff.com/getahead/2013/feb/19fashion1.jpg"
+    image_url = "https://calaero.edu/wp-content/uploads/2023/08/iStock-1332501286-2048x1152.jpg"
+
     result = process_image(image_url, models)
     
     if "error" in result:
