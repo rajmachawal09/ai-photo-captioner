@@ -4,6 +4,7 @@ version = "0.1.0"
 description = "App that uses AI to automatically generate captions for photos"
 authors = ["The Jedi Code"]
 readme = "README.md"
+package-mode = false
 
 [tool.poetry.dependencies]
 python = "^3.12"
@@ -11,7 +12,8 @@ torch = "^2.3.1"
 transformers = "^4.42.4"
 pillow = "^10.4.0"
 requests = "^2.32.3"
-
+streamlit = "^1.36.0"
+protobuf = "^3.20"
 
 [build-system]
 requires = ["poetry-core"]

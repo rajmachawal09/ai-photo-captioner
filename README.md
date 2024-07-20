@@ -13,5 +13,5 @@ poetry install
 Run the Code
 
 ```pycon
-python image_analyzer.py
+streamlit run image_analyzer.py
 ```
