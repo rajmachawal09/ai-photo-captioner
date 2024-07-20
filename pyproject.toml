@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "ai-photo-captioner"
+version = "0.1.0"
+description = "App that uses AI to automatically generate captions for photos"
+authors = ["The Jedi Code"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+torch = "^2.3.1"
+transformers = "^4.42.4"
+pillow = "^10.4.0"
+requests = "^2.32.3"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
